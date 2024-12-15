@@ -1,17 +1,17 @@
-import { CargoType, Delivery, Destination } from "./delivery";
-import { Driver } from "./driver";
+import { CargoType, Delivery, Destination } from './delivery';
+import { Driver } from './driver';
 
-describe("Delivery", () => {
+describe('Delivery', () => {
   const driver = new Driver({
-    id: "1",
-    name: "João da Silva",
-    licenseNumber: "ABC123456",
+    id: '1',
+    name: 'João da Silva',
+    licenseNumber: 'ABC123456',
   });
 
-  it("deve criar uma entrega corretamente", () => {
+  it('deve criar uma entrega corretamente', () => {
     const delivery = new Delivery({
-      id: "1",
-      truckId: "TRUCK1",
+      id: '1',
+      truckId: 'TRUCK1',
       driver,
       type: CargoType.OTHER,
       value: 20000,
@@ -20,8 +20,8 @@ describe("Delivery", () => {
       insured: false,
     });
 
-    expect(delivery.id).toBe("1");
-    expect(delivery.truckId).toBe("TRUCK1");
+    expect(delivery.id).toBe('1');
+    expect(delivery.truckId).toBe('TRUCK1');
     expect(delivery.driver).toBe(driver);
     expect(delivery.type).toBe(CargoType.OTHER);
     expect(delivery.value).toBe(20000);
@@ -31,10 +31,10 @@ describe("Delivery", () => {
     expect(delivery.insured).toBe(false);
   });
 
-  it("entregas com valores maiores que 30 mil devem receber um indicador de valiosa", () => {
+  it('entregas com valores maiores que 30 mil devem receber um indicador de valiosa', () => {
     const delivery = new Delivery({
-      id: "2",
-      truckId: "TRUCK2",
+      id: '2',
+      truckId: 'TRUCK2',
       driver,
       type: CargoType.OTHER,
       value: 30001,
@@ -46,10 +46,10 @@ describe("Delivery", () => {
     expect(delivery.isValuable).toBeTruthy();
   });
 
-  it("entregas do Tipo eletrônicos devem ter um indicador se tem seguro ou não", () => {
+  it('entregas do Tipo eletrônicos devem ter um indicador se tem seguro ou não', () => {
     const delivery = new Delivery({
-      id: "6",
-      truckId: "TRUCK6",
+      id: '6',
+      truckId: 'TRUCK6',
       driver,
       type: CargoType.ELECTRONICS,
       value: 10000,
@@ -58,13 +58,13 @@ describe("Delivery", () => {
       insured: false,
     });
 
-    expect(delivery).toHaveProperty("insured");
+    expect(delivery).toHaveProperty('insured');
   });
 
-  it("entregas do Tipo Combustível devem ter um indicador de perigosa", () => {
+  it('entregas do Tipo Combustível devem ter um indicador de perigosa', () => {
     const delivery = new Delivery({
-      id: "5",
-      truckId: "TRUCK5",
+      id: '5',
+      truckId: 'TRUCK5',
       driver,
       type: CargoType.FUEL,
       value: 10000,
@@ -75,10 +75,10 @@ describe("Delivery", () => {
     expect(delivery.isDangerous).toBe(true);
   });
 
-  it("entregas para o Nordeste têm uma taxa de 20% no valor do frete", () => {
+  it('entregas para o Nordeste têm uma taxa de 20% no valor do frete', () => {
     const delivery = new Delivery({
-      id: "3",
-      truckId: "TRUCK3",
+      id: '3',
+      truckId: 'TRUCK3',
       driver,
       type: CargoType.OTHER,
       value: 10000,
@@ -89,10 +89,10 @@ describe("Delivery", () => {
     expect(delivery.value).toEqual(12000);
   });
 
-  it("entregas para Argentina têm uma taxa de 40% no valor do frete;", () => {
+  it('entregas para Argentina têm uma taxa de 40% no valor do frete;', () => {
     const delivery = new Delivery({
-      id: "4",
-      truckId: "TRUCK4",
+      id: '4',
+      truckId: 'TRUCK4',
       driver,
       type: CargoType.OTHER,
       value: 10000,
@@ -103,10 +103,10 @@ describe("Delivery", () => {
     expect(delivery.value).toBe(14000); // 40% de taxa
   });
 
-  it("entregas para Amazônia têm uma taxa de 30% no valor do frete;", () => {
+  it('entregas para Amazônia têm uma taxa de 30% no valor do frete;', () => {
     const delivery = new Delivery({
-      id: "4",
-      truckId: "TRUCK4",
+      id: '4',
+      truckId: 'TRUCK4',
       driver,
       type: CargoType.OTHER,
       value: 10000,
@@ -117,11 +117,11 @@ describe("Delivery", () => {
     expect(delivery.value).toBe(13000); // 30% de taxa
   });
 
-  it("deve lançar erro ao tentar criar uma entrega do tipo eletrônico sem especificar se tem seguro ou não", () => {
+  it('deve lançar erro ao tentar criar uma entrega do tipo eletrônico sem especificar se tem seguro ou não', () => {
     expect(() => {
       new Delivery({
-        id: "6",
-        truckId: "TRUCK6",
+        id: '6',
+        truckId: 'TRUCK6',
         driver,
         type: CargoType.ELECTRONICS,
         value: 10000,

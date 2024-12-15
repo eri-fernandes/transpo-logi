@@ -1,5 +1,5 @@
-import { Delivery } from "./delivery";
-import { Driver } from "./driver";
+import { Delivery } from './delivery';
+import { Driver } from './driver';
 
 export class Truck {
   public id: string;

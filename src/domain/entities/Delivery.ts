@@ -1,16 +1,16 @@
-import { Driver } from "./driver";
+import { Driver } from './driver';
 
 export enum CargoType {
-  ELECTRONICS = "electronics",
-  FUEL = "fuel",
-  OTHER = "other",
+  ELECTRONICS = 'electronics',
+  FUEL = 'fuel',
+  OTHER = 'other',
 }
 
 export enum Destination {
-  NORTHEAST = "northeast",
-  ARGENTINA = "argentina",
-  AMAZON = "amazon",
-  OTHER = "other",
+  NORTHEAST = 'northeast',
+  ARGENTINA = 'argentina',
+  AMAZON = 'amazon',
+  OTHER = 'other',
 }
 
 export class Delivery {
@@ -58,7 +58,7 @@ export class Delivery {
     // Se o tipo for eletrônico, precisa ter o indicador de seguro
     if (type === CargoType.ELECTRONICS && insured === undefined) {
       throw new Error(
-        "Entregas do Tipo eletrônicos devem ter um indicador se tem seguro ou não."
+        'Entregas do Tipo eletrônicos devem ter um indicador se tem seguro ou não.'
       );
     }
 
