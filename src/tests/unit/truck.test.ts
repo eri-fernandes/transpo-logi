@@ -1,6 +1,10 @@
-import { CargoType, Delivery, Destination } from './delivery';
-import { Driver } from './driver';
-import { Truck } from './truck';
+import {
+  CargoType,
+  Delivery,
+  Destination,
+} from '../../domain/entities/delivery';
+import { Driver } from '../../domain/entities/driver';
+import { Truck } from '../../domain/entities/truck';
 
 describe('Truck', () => {
   const driver = new Driver({

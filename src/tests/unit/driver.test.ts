@@ -1,4 +1,4 @@
-import { Driver } from './driver';
+import { Driver } from '../../domain/entities/driver';
 
 describe('Driver', () => {
   it('deve criar um motorista corretamente', () => {
