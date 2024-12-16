@@ -1,5 +1,5 @@
-import { Delivery } from '../../../domain/entities/delivery';
-import { DeliveryRepository } from '../../../domain/repositories/delivery-repository';
+import { Delivery } from '../../domain/entities/delivery';
+import { DeliveryRepository } from '../../domain/repositories/delivery-repository';
 
 export class InMemoryDeliveryRepository implements DeliveryRepository {
   private deliveries: Delivery[] = [];
@@ -12,7 +12,7 @@ export class InMemoryDeliveryRepository implements DeliveryRepository {
   async countByTruckAndMonth(truckId: string, month: number): Promise<number> {
     return this.deliveries.filter((delivery) => {
       const deliveryMonth = delivery.date.getMonth() + 1;
-      return delivery.truck.id === truckId && deliveryMonth === month;
+      return delivery.truckId === truckId && deliveryMonth === month;
     }).length;
   }
 
@@ -22,7 +22,7 @@ export class InMemoryDeliveryRepository implements DeliveryRepository {
   ): Promise<number> {
     return this.deliveries.filter((delivery) => {
       const deliveryMonth = delivery.date.getMonth() + 1;
-      return delivery.driver.id === driverId && deliveryMonth === month;
+      return delivery.driverId === driverId && deliveryMonth === month;
     }).length;
   }
 
@@ -31,7 +31,7 @@ export class InMemoryDeliveryRepository implements DeliveryRepository {
     region: string
   ): Promise<number> {
     return this.deliveries.filter((delivery) => {
-      return delivery.driver.id === driverId && delivery.destination === region;
+      return delivery.driverId === driverId && delivery.destination === region;
     }).length;
   }
 

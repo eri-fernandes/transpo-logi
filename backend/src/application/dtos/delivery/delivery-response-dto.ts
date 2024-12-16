@@ -4,8 +4,6 @@ import { Truck } from '../../../domain/entities/truck';
 
 export interface DeliveryResponseDTO {
   id: string;
-  truck: Truck;
-  driver: Driver;
   type: CargoType;
   value: number;
   destination: Destination;
@@ -13,4 +11,8 @@ export interface DeliveryResponseDTO {
   insured?: boolean;
   isValuable: boolean;
   isDangerous: boolean;
+  truckId?: string;
+  truck?: Truck;
+  driverId?: string;
+  driver?: Driver;
 }

@@ -1,6 +1,5 @@
 import { CreateTruckUseCase } from '../../../../application/use-cases/truck/create-truck-use-case';
-import { Truck } from '../../../../domain/entities/truck';
-import { InMemoryTruckRepository } from '../../../../infrastructure/repositories/truck/in-memory-truck-repository';
+import { InMemoryTruckRepository } from '../../../../infrastructure/in-memory/in-memory-truck-repository';
 
 describe('CreateTruckUseCase', () => {
   it('deve criar um caminhão corretamente', async () => {
@@ -14,7 +13,6 @@ describe('CreateTruckUseCase', () => {
 
     const truck = await createTruckUseCase.execute(truckData);
 
-    expect(truck).toBeInstanceOf(Truck);
     expect(truck.id).toBe('1');
     expect(truck.licensePlate).toBe('AAA1234');
   });

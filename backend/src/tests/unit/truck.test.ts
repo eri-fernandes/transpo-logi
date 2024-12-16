@@ -17,7 +17,7 @@ describe('Truck', () => {
     const truck = new Truck({
       id: '1',
       licensePlate: 'AAA1234',
-      driver,
+      driverId: driver.id,
     });
 
     expect(truck.id).toBe('1');
@@ -28,22 +28,22 @@ describe('Truck', () => {
     const truck = new Truck({
       id: '1',
       licensePlate: 'AAA1234',
-      driver,
+      driverId: driver.id,
     });
 
     const delivery = new Delivery({
       id: '1',
-      truck,
-      driver,
+      truckId: truck.id,
+      driverId: driver.id,
       type: CargoType.OTHER,
       value: 15000,
       destination: Destination.OTHER,
       date: new Date(),
     });
 
-    truck.deliveries = [delivery];
+    truck.deliveries = [delivery.id];
 
     expect(truck.deliveries?.length).toBe(1);
-    expect(truck.deliveries?.[0]).toBe(delivery);
+    expect(truck.deliveries?.[0]).toBe(delivery.id);
   });
 });

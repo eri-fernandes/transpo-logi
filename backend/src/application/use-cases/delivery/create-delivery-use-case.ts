@@ -53,21 +53,21 @@ export class CreateDeliveryUseCase {
     // Criar entrega
     const delivery = new Delivery({
       id: data.id,
-      truck: data.truck,
+      truckId: data.truck.id,
       type: data.type,
       value: data.value,
       destination: data.destination,
       date: data.date,
       insured: data.insured,
-      driver: data.driver,
+      driverId: data.driver.id,
     });
 
     const createdDelivery = await this.deliveryRepository.create(delivery);
 
     return {
       id: createdDelivery.id,
-      truck: createdDelivery.truck,
-      driver: createdDelivery.driver,
+      truckId: createdDelivery.truckId,
+      driverId: createdDelivery.driverId,
       type: createdDelivery.type,
       value: createdDelivery.value,
       destination: createdDelivery.destination,

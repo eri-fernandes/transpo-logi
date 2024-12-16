@@ -12,6 +12,11 @@ export class CreateTruckUseCase {
       licensePlate: data.licensePlate,
     });
 
-    return this.truckRepository.create(truck);
+    return this.truckRepository.create({
+      id: truck.id,
+      licensePlate: truck.licensePlate,
+      driverId: truck.driverId,
+      deliveries: truck.deliveries,
+    });
   }
 }

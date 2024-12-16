@@ -1,6 +1,3 @@
-import { Driver } from './driver';
-import { Truck } from './truck';
-
 export enum CargoType {
   ELECTRONICS = 'electronics',
   FUEL = 'fuel',
@@ -16,8 +13,8 @@ export enum Destination {
 
 export class Delivery {
   public id: string;
-  public truck: Truck;
-  public driver: Driver;
+  public truckId: string;
+  public driverId: string;
   public type: CargoType;
   public value: number;
   public destination: Destination;
@@ -28,8 +25,8 @@ export class Delivery {
 
   constructor({
     id,
-    truck,
-    driver,
+    truckId,
+    driverId,
     type,
     value,
     destination,
@@ -37,8 +34,8 @@ export class Delivery {
     insured,
   }: {
     id: string;
-    truck: Truck;
-    driver: Driver;
+    truckId: string;
+    driverId: string;
     type: CargoType;
     value: number;
     destination: Destination;
@@ -46,8 +43,8 @@ export class Delivery {
     insured?: boolean;
   }) {
     this.id = id;
-    this.truck = truck;
-    this.driver = driver;
+    this.truckId = truckId;
+    this.driverId = driverId;
     this.type = type;
     this.value = value;
     this.destination = destination;

@@ -1,7 +1,7 @@
 // src/infrastructure/repositories/InMemoryTruckRepository.ts
 
-import { Truck } from '../../../domain/entities/truck';
-import { TruckRepository } from '../../../domain/repositories/truck-repository';
+import { Truck } from '../../domain/entities/truck';
+import { TruckRepository } from '../../domain/repositories/truck-repository';
 
 export class InMemoryTruckRepository implements TruckRepository {
   private trucks: Truck[] = [];

@@ -1,26 +1,23 @@
-import { Delivery } from './delivery';
-import { Driver } from './driver';
-
 export class Truck {
   public id: string;
   public licensePlate: string;
-  public driver?: Driver;
-  public deliveries?: Delivery[];
+  public driverId?: string;
+  public deliveries?: string[];
 
   constructor({
     id,
     licensePlate,
-    driver,
+    driverId,
     deliveries,
   }: {
     id: string;
     licensePlate: string;
-    driver?: Driver;
-    deliveries?: Delivery[];
+    driverId?: string;
+    deliveries?: string[];
   }) {
     this.id = id;
     this.licensePlate = licensePlate;
-    this.driver = driver;
+    this.driverId = driverId;
     this.deliveries = deliveries;
   }
 }

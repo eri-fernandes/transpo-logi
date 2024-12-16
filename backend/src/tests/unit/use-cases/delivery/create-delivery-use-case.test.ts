@@ -2,7 +2,7 @@ import { CreateDeliveryUseCase } from '../../../../application/use-cases/deliver
 import { CargoType, Destination } from '../../../../domain/entities/delivery';
 import { Driver } from '../../../../domain/entities/driver';
 import { Truck } from '../../../../domain/entities/truck';
-import { InMemoryDeliveryRepository } from '../../../../infrastructure/repositories/delivery/in-memory-delivery-repository';
+import { InMemoryDeliveryRepository } from '../../../../infrastructure/in-memory/in-memory-delivery-repository';
 
 describe('CreateDeliveryUseCase', () => {
   let deliveryRepository: InMemoryDeliveryRepository;
@@ -23,7 +23,7 @@ describe('CreateDeliveryUseCase', () => {
     const truck = new Truck({
       id: '1',
       licensePlate: 'AAA1234',
-      driver,
+      driverId: driver.id,
     });
 
     const delivery = await createDeliveryUseCase.execute({
@@ -38,16 +38,8 @@ describe('CreateDeliveryUseCase', () => {
 
     expect(delivery).toMatchObject({
       id: '1',
-      truck: {
-        id: '1',
-        licensePlate: 'AAA1234',
-        driver,
-      },
-      driver: {
-        id: '1',
-        name: 'João da Silva',
-        licenseNumber: 'ABC123456',
-      },
+      truckId: '1',
+      driverId: '1',
       type: CargoType.OTHER,
       value: 20000,
       destination: Destination.OTHER,
