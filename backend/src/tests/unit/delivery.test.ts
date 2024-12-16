@@ -4,6 +4,7 @@ import {
   Destination,
 } from '../../domain/entities/delivery';
 import { Driver } from '../../domain/entities/driver';
+import { Truck } from '../../domain/entities/truck';
 
 describe('Delivery', () => {
   const driver = new Driver({
@@ -12,10 +13,15 @@ describe('Delivery', () => {
     licenseNumber: 'ABC123456',
   });
 
+  const truck = new Truck({
+    id: '1',
+    licensePlate: 'AAA1234',
+  });
+
   it('deve criar uma entrega corretamente', () => {
     const delivery = new Delivery({
       id: '1',
-      truckId: 'TRUCK1',
+      truck,
       driver,
       type: CargoType.OTHER,
       value: 20000,
@@ -25,7 +31,7 @@ describe('Delivery', () => {
     });
 
     expect(delivery.id).toBe('1');
-    expect(delivery.truckId).toBe('TRUCK1');
+    expect(delivery.truck).toBeInstanceOf(Truck);
     expect(delivery.driver).toBe(driver);
     expect(delivery.type).toBe(CargoType.OTHER);
     expect(delivery.value).toBe(20000);
@@ -38,7 +44,7 @@ describe('Delivery', () => {
   it('entregas com valores maiores que 30 mil devem receber um indicador de valiosa', () => {
     const delivery = new Delivery({
       id: '2',
-      truckId: 'TRUCK2',
+      truck,
       driver,
       type: CargoType.OTHER,
       value: 30001,
@@ -53,7 +59,7 @@ describe('Delivery', () => {
   it('entregas do Tipo eletrônicos devem ter um indicador se tem seguro ou não', () => {
     const delivery = new Delivery({
       id: '6',
-      truckId: 'TRUCK6',
+      truck,
       driver,
       type: CargoType.ELECTRONICS,
       value: 10000,
@@ -68,7 +74,7 @@ describe('Delivery', () => {
   it('entregas do Tipo Combustível devem ter um indicador de perigosa', () => {
     const delivery = new Delivery({
       id: '5',
-      truckId: 'TRUCK5',
+      truck,
       driver,
       type: CargoType.FUEL,
       value: 10000,
@@ -82,7 +88,7 @@ describe('Delivery', () => {
   it('entregas para o Nordeste têm uma taxa de 20% no valor do frete', () => {
     const delivery = new Delivery({
       id: '3',
-      truckId: 'TRUCK3',
+      truck,
       driver,
       type: CargoType.OTHER,
       value: 10000,
@@ -96,7 +102,7 @@ describe('Delivery', () => {
   it('entregas para Argentina têm uma taxa de 40% no valor do frete;', () => {
     const delivery = new Delivery({
       id: '4',
-      truckId: 'TRUCK4',
+      truck,
       driver,
       type: CargoType.OTHER,
       value: 10000,
@@ -110,7 +116,7 @@ describe('Delivery', () => {
   it('entregas para Amazônia têm uma taxa de 30% no valor do frete;', () => {
     const delivery = new Delivery({
       id: '4',
-      truckId: 'TRUCK4',
+      truck,
       driver,
       type: CargoType.OTHER,
       value: 10000,
@@ -125,13 +131,15 @@ describe('Delivery', () => {
     expect(() => {
       new Delivery({
         id: '6',
-        truckId: 'TRUCK6',
+        truck,
         driver,
         type: CargoType.ELECTRONICS,
         value: 10000,
         destination: Destination.OTHER,
         date: new Date(),
       });
-    }).toThrow();
+    }).toThrow(
+      'Entregas do Tipo eletrônicos devem ter um indicador se tem seguro ou não.'
+    );
   });
 });

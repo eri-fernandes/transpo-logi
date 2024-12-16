@@ -25,9 +25,15 @@ describe('Truck', () => {
   });
 
   it('deve associar uma entrega a um caminhão', () => {
+    const truck = new Truck({
+      id: '1',
+      licensePlate: 'AAA1234',
+      driver,
+    });
+
     const delivery = new Delivery({
       id: '1',
-      truckId: '1',
+      truck,
       driver,
       type: CargoType.OTHER,
       value: 15000,
@@ -35,12 +41,7 @@ describe('Truck', () => {
       date: new Date(),
     });
 
-    const truck = new Truck({
-      id: '1',
-      licensePlate: 'AAA1234',
-      driver,
-      deliveries: [delivery],
-    });
+    truck.deliveries = [delivery];
 
     expect(truck.deliveries?.length).toBe(1);
     expect(truck.deliveries?.[0]).toBe(delivery);
