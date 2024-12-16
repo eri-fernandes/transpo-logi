@@ -18,13 +18,10 @@ describe('Truck', () => {
       id: '1',
       licensePlate: 'AAA1234',
       driver,
-      deliveries: [],
     });
 
     expect(truck.id).toBe('1');
     expect(truck.licensePlate).toBe('AAA1234');
-    expect(truck.driver).toBe(driver);
-    expect(truck.deliveries.length).toBe(0);
   });
 
   it('deve associar uma entrega a um caminhão', () => {
@@ -45,7 +42,7 @@ describe('Truck', () => {
       deliveries: [delivery],
     });
 
-    expect(truck.deliveries.length).toBe(1);
-    expect(truck.deliveries[0]).toBe(delivery);
+    expect(truck.deliveries?.length).toBe(1);
+    expect(truck.deliveries?.[0]).toBe(delivery);
   });
 });

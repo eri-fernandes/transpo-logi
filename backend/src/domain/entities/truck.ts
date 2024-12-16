@@ -4,8 +4,8 @@ import { Driver } from './driver';
 export class Truck {
   public id: string;
   public licensePlate: string;
-  public driver: Driver;
-  public deliveries: Delivery[];
+  public driver?: Driver;
+  public deliveries?: Delivery[];
 
   constructor({
     id,
@@ -15,8 +15,8 @@ export class Truck {
   }: {
     id: string;
     licensePlate: string;
-    driver: Driver;
-    deliveries: Delivery[];
+    driver?: Driver;
+    deliveries?: Delivery[];
   }) {
     this.id = id;
     this.licensePlate = licensePlate;
