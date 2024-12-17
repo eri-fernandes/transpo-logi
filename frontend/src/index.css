@@ -9,3 +9,10 @@
 body {
   @apply font-roboto;
 }
+
+@layer base {
+  :root {
+
+    --radius: 0.5rem
+  }
+}
