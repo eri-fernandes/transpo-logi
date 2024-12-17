@@ -9,7 +9,6 @@ export class CreateDeliveryUseCase {
   async execute(data: CreateDeliveryDTO): Promise<DeliveryResponseDTO> {
     const currentMonth = new Date().getMonth() + 1;
 
-    // Verificar entregas do caminhão
     const deliveriesForTruck =
       await this.deliveryRepository.countByTruckAndMonth(
         data.truckId,
@@ -22,7 +21,6 @@ export class CreateDeliveryUseCase {
       );
     }
 
-    // Verificar entregas do motorista
     const deliveriesForDriver =
       await this.deliveryRepository.countByDriverAndMonth(
         data.driver.id,
@@ -35,7 +33,6 @@ export class CreateDeliveryUseCase {
       );
     }
 
-    // Verificar entregas para o Nordeste
     if (data.destination === 'northeast') {
       const deliveriesToNortheast =
         await this.deliveryRepository.countByDriverAndRegion(
@@ -50,7 +47,6 @@ export class CreateDeliveryUseCase {
       }
     }
 
-    // Criar entrega
     const delivery = new Delivery({
       id: data.id,
       truckId: data.truckId,
