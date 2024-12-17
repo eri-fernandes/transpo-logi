@@ -1,10 +1,9 @@
 import { CargoType, Destination } from '../../../domain/entities/delivery';
 import { Driver } from '../../../domain/entities/driver';
-import { Truck } from '../../../domain/entities/truck';
 
 export interface CreateDeliveryDTO {
   id: string;
-  truck: Truck;
+  truckId: string;
   driver: Driver;
   type: CargoType;
   value: number;

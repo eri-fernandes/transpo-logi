@@ -4,18 +4,12 @@ import {
   Destination,
 } from '../../domain/entities/delivery';
 import { Driver } from '../../domain/entities/driver';
-import { Truck } from '../../domain/entities/truck';
 
 describe('Delivery', () => {
   const driver = new Driver({
     id: '1',
     name: 'João da Silva',
     licenseNumber: 'ABC123456',
-  });
-
-  const truck = new Truck({
-    id: '1',
-    licensePlate: 'AAA1234',
   });
 
   it('deve criar uma entrega corretamente', () => {
@@ -44,7 +38,7 @@ describe('Delivery', () => {
   it('entregas com valores maiores que 30 mil devem receber um indicador de valiosa', () => {
     const delivery = new Delivery({
       id: '2',
-      truckId: truck.id,
+      truckId: '1',
       driverId: driver.id,
       type: CargoType.OTHER,
       value: 30001,
@@ -59,7 +53,7 @@ describe('Delivery', () => {
   it('entregas do Tipo eletrônicos devem ter um indicador se tem seguro ou não', () => {
     const delivery = new Delivery({
       id: '6',
-      truckId: truck.id,
+      truckId: '1',
       driverId: driver.id,
       type: CargoType.ELECTRONICS,
       value: 10000,
@@ -74,7 +68,7 @@ describe('Delivery', () => {
   it('entregas do Tipo Combustível devem ter um indicador de perigosa', () => {
     const delivery = new Delivery({
       id: '5',
-      truckId: truck.id,
+      truckId: '1',
       driverId: driver.id,
       type: CargoType.FUEL,
       value: 10000,
@@ -88,7 +82,7 @@ describe('Delivery', () => {
   it('entregas para o Nordeste têm uma taxa de 20% no valor do frete', () => {
     const delivery = new Delivery({
       id: '3',
-      truckId: truck.id,
+      truckId: '1',
       driverId: driver.id,
       type: CargoType.OTHER,
       value: 10000,
@@ -102,7 +96,7 @@ describe('Delivery', () => {
   it('entregas para Argentina têm uma taxa de 40% no valor do frete;', () => {
     const delivery = new Delivery({
       id: '4',
-      truckId: truck.id,
+      truckId: '1',
       driverId: driver.id,
       type: CargoType.OTHER,
       value: 10000,
@@ -116,7 +110,7 @@ describe('Delivery', () => {
   it('entregas para Amazônia têm uma taxa de 30% no valor do frete;', () => {
     const delivery = new Delivery({
       id: '4',
-      truckId: truck.id,
+      truckId: '1',
       driverId: driver.id,
       type: CargoType.OTHER,
       value: 10000,
@@ -131,7 +125,7 @@ describe('Delivery', () => {
     expect(() => {
       new Delivery({
         id: '6',
-        truckId: truck.id,
+        truckId: '1',
         driverId: driver.id,
         type: CargoType.ELECTRONICS,
         value: 10000,

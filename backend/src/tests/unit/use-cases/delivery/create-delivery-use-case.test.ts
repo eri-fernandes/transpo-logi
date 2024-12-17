@@ -20,15 +20,9 @@ describe('CreateDeliveryUseCase', () => {
       licenseNumber: 'ABC123456',
     });
 
-    const truck = new Truck({
-      id: '1',
-      licensePlate: 'AAA1234',
-      driverId: driver.id,
-    });
-
     const delivery = await createDeliveryUseCase.execute({
       id: '1',
-      truck,
+      truckId: '1',
       driver,
       type: CargoType.OTHER,
       value: 20000,
@@ -58,7 +52,7 @@ describe('CreateDeliveryUseCase', () => {
     for (let i = 0; i < 4; i++) {
       await createDeliveryUseCase.execute({
         id: `${i}`,
-        truck: new Truck({ id: 'TRUCK1', licensePlate: 'AAA1234' }),
+        truckId: '1',
         driver: drivers[i % 2], // Alterna entre os motoristas
         type: CargoType.OTHER,
         value: 10000,
@@ -71,7 +65,7 @@ describe('CreateDeliveryUseCase', () => {
     await expect(
       createDeliveryUseCase.execute({
         id: '5',
-        truck: new Truck({ id: 'TRUCK1', licensePlate: 'AAA1234' }),
+        truckId: '1',
         driver: new Driver({ id: '5', name: 'Pedro', licenseNumber: 'MNO345' }),
         type: CargoType.OTHER,
         value: 10000,
@@ -94,7 +88,7 @@ describe('CreateDeliveryUseCase', () => {
     for (let i = 0; i < 2; i++) {
       await createDeliveryUseCase.execute({
         id: `${i}`,
-        truck: new Truck({ id: 'TRUCK1', licensePlate: 'AAA1234' }),
+        truckId: '1',
         driver,
         type: CargoType.OTHER,
         value: 10000,
@@ -107,7 +101,7 @@ describe('CreateDeliveryUseCase', () => {
     await expect(
       createDeliveryUseCase.execute({
         id: '3',
-        truck: new Truck({ id: 'TRUCK2', licensePlate: 'BBB5678' }),
+        truckId: '1',
         driver,
         type: CargoType.OTHER,
         value: 10000,
@@ -129,7 +123,7 @@ describe('CreateDeliveryUseCase', () => {
     // Criar 1 entrega no Nordeste para o motorista
     await createDeliveryUseCase.execute({
       id: '1',
-      truck: new Truck({ id: 'TRUCK1', licensePlate: 'AAA1234' }),
+      truckId: '1',
       driver,
       type: CargoType.OTHER,
       value: 10000,
@@ -141,7 +135,7 @@ describe('CreateDeliveryUseCase', () => {
     await expect(
       createDeliveryUseCase.execute({
         id: '2',
-        truck: new Truck({ id: 'TRUCK2', licensePlate: 'BBB5678' }),
+        truckId: '1',
         driver,
         type: CargoType.OTHER,
         value: 10000,

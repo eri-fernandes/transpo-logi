@@ -8,15 +8,19 @@ export class CreateTruckUseCase {
 
   async execute(data: CreateTruckDTO): Promise<TruckResponseDTO> {
     const truck = new Truck({
-      id: data.id,
       licensePlate: data.licensePlate,
     });
 
-    return this.truckRepository.create({
-      id: truck.id,
-      licensePlate: truck.licensePlate,
-      driverId: truck.driverId,
-      deliveries: truck.deliveries,
+    const truckExists = await this.truckRepository.fincByLicensePlate(
+      truck.licensePlate
+    );
+
+    if (truckExists) {
+      throw new Error('Caminhão ja cadastrado');
+    }
+
+    return await this.truckRepository.create({
+      licensePlate: data.licensePlate,
     });
   }
 }

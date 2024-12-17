@@ -7,13 +7,11 @@ describe('CreateTruckUseCase', () => {
     const createTruckUseCase = new CreateTruckUseCase(truckRepository);
 
     const truckData = {
-      id: '1',
       licensePlate: 'AAA1234',
     };
 
     const truck = await createTruckUseCase.execute(truckData);
 
-    expect(truck.id).toBe('1');
     expect(truck.licensePlate).toBe('AAA1234');
   });
 });

@@ -12,7 +12,7 @@ export class CreateDeliveryUseCase {
     // Verificar entregas do caminhão
     const deliveriesForTruck =
       await this.deliveryRepository.countByTruckAndMonth(
-        data.truck.id,
+        data.truckId,
         currentMonth
       );
 
@@ -53,7 +53,7 @@ export class CreateDeliveryUseCase {
     // Criar entrega
     const delivery = new Delivery({
       id: data.id,
-      truckId: data.truck.id,
+      truckId: data.truckId,
       type: data.type,
       value: data.value,
       destination: data.destination,

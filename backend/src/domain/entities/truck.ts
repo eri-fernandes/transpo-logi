@@ -1,5 +1,5 @@
 export class Truck {
-  public id: string;
+  public id?: string;
   public licensePlate: string;
   public driverId?: string;
   public deliveries?: string[];
@@ -10,7 +10,7 @@ export class Truck {
     driverId,
     deliveries,
   }: {
-    id: string;
+    id?: string;
     licensePlate: string;
     driverId?: string;
     deliveries?: string[];

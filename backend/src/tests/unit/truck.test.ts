@@ -33,7 +33,7 @@ describe('Truck', () => {
 
     const delivery = new Delivery({
       id: '1',
-      truckId: truck.id,
+      truckId: '1',
       driverId: driver.id,
       type: CargoType.OTHER,
       value: 15000,
