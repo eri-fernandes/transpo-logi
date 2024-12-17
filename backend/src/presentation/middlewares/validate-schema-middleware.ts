@@ -1,21 +1,17 @@
 import { Request, Response, NextFunction } from 'express';
-import { ZodSchema, ZodError } from 'zod';
+import { AnyZodObject, ZodError } from 'zod';
 
-export class ValidateSchemaMiddleware {
-  constructor(private schema: ZodSchema<unknown>) {}
-
-  validate = (req: Request, res: Response, next: NextFunction): void => {
+export const validateSchema =
+  (schema: AnyZodObject) =>
+  (req: Request, res: Response, next: NextFunction): void => {
     try {
-      this.schema.parse(req.body);
-      next();
+      schema.parse(req.body); // Valida o body da requisição
+      next(); // Continua para o próximo middleware se a validação passar
     } catch (error) {
       if (error instanceof ZodError) {
-        res.status(400).json({
-          error: error.errors.map((e) => e.message),
-        });
+        next(error); // Passa o erro de validação para o middleware de erro
       } else {
-        res.status(500).json({ error: 'Erro interno do servidor.' });
+        next(error); // Passa outros erros para o middleware de erro
       }
     }
   };
-}
