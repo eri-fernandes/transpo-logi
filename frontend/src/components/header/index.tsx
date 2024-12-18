@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Truck, Menu, X } from 'lucide-react';
-import { NavLink } from 'react-router';
+import { NavItem } from '../nav-item';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,40 +23,16 @@ export default function Header() {
           <nav className="hidden md:block">
             <ul className="flex space-x-4">
               <li>
-                <NavLink
-                  to="/dashboard"
-                  className={({ isActive }) =>
-                    `hover:underline ${
-                      isActive ? 'text-white underline' : 'text-gray-300'
-                    }`
-                  }
-                >
-                  Dashboard
-                </NavLink>
+                <NavItem to="/dashboard" label="Dashboard" />
               </li>
               <li>
-                <NavLink
-                  to="/trucks"
-                  className={({ isActive }) =>
-                    `hover:underline ${
-                      isActive ? 'text-white underline' : 'text-gray-300'
-                    }`
-                  }
-                >
-                  Caminhões
-                </NavLink>
+                <NavItem to="/drivers" label="Motoristas" />
               </li>
               <li>
-                <NavLink
-                  to="/deliveries"
-                  className={({ isActive }) =>
-                    `hover:underline ${
-                      isActive ? 'text-white underline' : 'text-gray-300'
-                    }`
-                  }
-                >
-                  Entregas
-                </NavLink>
+                <NavItem to="/trucks" label="Caminhões" />
+              </li>
+              <li>
+                <NavItem to="/deliveries" label="Entregas" />
               </li>
             </ul>
           </nav>
@@ -67,7 +43,7 @@ export default function Header() {
       <div
         className={`fixed inset-y-0 left-0 transform ${
           isMenuOpen ? 'translate-x-0' : '-translate-x-full'
-        } bg-primary z-50 w-64 overflow-y-auto transition duration-300 ease-in-out md:hidden`}
+        } z-50 w-64 overflow-y-auto bg-primary transition duration-300 ease-in-out md:hidden`}
       >
         <div className="p-6">
           <button onClick={toggleMenu} className="absolute right-4 top-4">
@@ -76,43 +52,28 @@ export default function Header() {
           <nav className="mt-8">
             <ul className="space-y-2">
               <li>
-                <NavLink
+                <NavItem
                   to="/dashboard"
-                  className={({ isActive }) =>
-                    `hover:bg-primary/80 block py-2 ${
-                      isActive ? 'text-white underline' : 'text-gray-300'
-                    }`
-                  }
+                  label="Dashboard"
                   onClick={toggleMenu}
-                >
-                  Dashboard
-                </NavLink>
+                />
               </li>
               <li>
-                <NavLink
-                  to="/trucks"
-                  className={({ isActive }) =>
-                    `hover:bg-primary/80 block py-2 ${
-                      isActive ? 'text-white underline' : 'text-gray-300'
-                    }`
-                  }
+                <NavItem
+                  to="/drivers"
+                  label="Motoristas"
                   onClick={toggleMenu}
-                >
-                  Caminhões
-                </NavLink>
+                />
               </li>
               <li>
-                <NavLink
+                <NavItem to="/trucks" label="Caminhões" onClick={toggleMenu} />
+              </li>
+              <li>
+                <NavItem
                   to="/deliveries"
-                  className={({ isActive }) =>
-                    `hover:bg-primary/80 block py-2 ${
-                      isActive ? 'text-white underline' : 'text-gray-300'
-                    }`
-                  }
+                  label="Entregas"
                   onClick={toggleMenu}
-                >
-                  Entregas
-                </NavLink>
+                />
               </li>
             </ul>
           </nav>
