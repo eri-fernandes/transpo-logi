@@ -1,10 +1,13 @@
 import express, { Request, Response, NextFunction } from 'express';
 import { errorHandler } from './presentation/middlewares/error-handler-middleware';
 import truckRoutes from './presentation/routes/truck-routes';
+import cors from 'cors';
 
 const app = express();
 
 app.use(express.json());
+
+app.use(cors());
 
 app.use('/', truckRoutes);
 
