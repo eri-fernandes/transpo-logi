@@ -6,47 +6,17 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Pencil, Trash2 } from 'lucide-react';
+import { Truck } from '@/types/truck';
 
-const trucks = [
-  {
-    id: 1,
-    number: 'T001',
-    status: 'Em Entrega',
-    driver: 'João Silva',
-    lastMaintenance: '2023-05-15',
-  },
-  {
-    id: 2,
-    number: 'T002',
-    status: 'Disponível',
-    driver: 'Maria Santos',
-    lastMaintenance: '2023-06-01',
-  },
-  {
-    id: 3,
-    number: 'T003',
-    status: 'Manutenção',
-    driver: 'Carlos Oliveira',
-    lastMaintenance: '2023-06-10',
-  },
-  {
-    id: 4,
-    number: 'T004',
-    status: 'Em Entrega',
-    driver: 'Ana Rodrigues',
-    lastMaintenance: '2023-05-20',
-  },
-  {
-    id: 5,
-    number: 'T005',
-    status: 'Disponível',
-    driver: 'Pedro Almeida',
-    lastMaintenance: '2023-06-05',
-  },
-];
+interface TruckListProps {
+  trucks: Truck[];
+  onUpdate: (truck: Truck) => void;
+  onDelete: (id: number) => void;
+}
 
-export function TruckList() {
+export function TruckList({ trucks, onUpdate, onDelete }: TruckListProps) {
   return (
     <div className="rounded-lg bg-white p-6 shadow-md">
       <h2 className="mb-4 text-xl font-bold">Lista de Caminhões</h2>
@@ -54,32 +24,36 @@ export function TruckList() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Número</TableHead>
-              <TableHead>Status</TableHead>
+              <TableHead>Placa</TableHead>
               <TableHead>Motorista</TableHead>
-              <TableHead>Última Manutenção</TableHead>
+              <TableHead>Ações</TableHead>
             </TableRow>
           </TableHeader>
-
           <TableBody>
             {trucks.map((truck) => (
               <TableRow key={truck.id}>
-                <TableCell className="font-medium">{truck.number}</TableCell>
-                <TableCell>
-                  <Badge
-                    variant={
-                      truck.status === 'Disponível'
-                        ? 'success'
-                        : truck.status === 'Em Entrega'
-                          ? 'warning'
-                          : 'destructive'
-                    }
-                  >
-                    {truck.status}
-                  </Badge>
+                <TableCell className="font-medium">
+                  {truck.licensePlate}
                 </TableCell>
                 <TableCell>{truck.driver}</TableCell>
-                <TableCell>{truck.lastMaintenance}</TableCell>
+                <TableCell>
+                  <div className="flex space-x-2">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => onUpdate(truck)}
+                    >
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => onDelete(truck.id)}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

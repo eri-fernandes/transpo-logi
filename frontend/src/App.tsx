@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { Login } from './pages/login';
-import { Dashboard } from '@/pages/dashboard';
 import { AuthLayout } from '@/layouts/auth-layout';
 import { Trucks } from './pages/trucks';
 import { NotFound } from './pages/not-found';
 import { Deliveries } from './pages/deliveries';
+import { Toaster } from '@/components/ui/toaster';
 
 export default function App() {
   return (
@@ -14,7 +14,7 @@ export default function App() {
 
         {/* Área logada */}
         <Route element={<AuthLayout />}>
-          <Route path="/dashboard" element={<Dashboard />} />
+          {/* <Route path="/dashboard" element={<Dashboard />} /> */}
           <Route path="/trucks" element={<Trucks />} />
           <Route path="/deliveries" element={<Deliveries />} />
         </Route>
@@ -22,6 +22,8 @@ export default function App() {
         {/* 404 */}
         <Route path="*" element={<NotFound />} />
       </Routes>
+
+      <Toaster />
     </BrowserRouter>
   );
 }

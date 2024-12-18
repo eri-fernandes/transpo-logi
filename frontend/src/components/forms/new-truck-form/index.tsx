@@ -2,27 +2,20 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 
-export function NewTruckForm() {
-  const [number, setNumber] = useState('');
+interface NewTruckFormProps {
+  onSubmit: (licensePlate: string, driver: string) => void;
+}
+
+export default function NewTruckForm({ onSubmit }: NewTruckFormProps) {
+  const [licensePlate, setLicensePlate] = useState('');
   const [driver, setDriver] = useState('');
-  const [status, setStatus] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission (e.g., send data to API)
-    console.log('New truck:', { number, driver, status });
-    // Reset form
-    setNumber('');
+    onSubmit(licensePlate, driver);
+    setLicensePlate('');
     setDriver('');
-    setStatus('');
   };
 
   return (
@@ -30,11 +23,11 @@ export function NewTruckForm() {
       <h2 className="mb-4 text-xl font-bold">Adicionar Novo Caminhão</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <Label htmlFor="number">Número do Caminhão</Label>
+          <Label htmlFor="licensePlate">Placa do Caminhão</Label>
           <Input
-            id="number"
-            value={number}
-            onChange={(e) => setNumber(e.target.value)}
+            id="licensePlate"
+            value={licensePlate}
+            onChange={(e) => setLicensePlate(e.target.value)}
             required
           />
         </div>
@@ -47,22 +40,9 @@ export function NewTruckForm() {
             required
           />
         </div>
-        <div>
-          <Label htmlFor="status">Status</Label>
-          <Select value={status} onValueChange={setStatus} required>
-            <SelectTrigger>
-              <SelectValue placeholder="Selecione o status" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="disponivel">Disponível</SelectItem>
-              <SelectItem value="em_entrega">Em Entrega</SelectItem>
-              <SelectItem value="manutencao">Manutenção</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
         <Button
           type="submit"
-          className="bg-primary text-primary-foreground hover:bg-primary/90 w-full"
+          className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
         >
           Adicionar Caminhão
         </Button>
