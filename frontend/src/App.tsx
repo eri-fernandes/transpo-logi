@@ -3,6 +3,7 @@ import { Login } from './pages/login';
 import { Dashboard } from '@/pages/dashboard';
 import { AuthLayout } from '@/layouts/auth-layout';
 import { Trucks } from './pages/trucks';
+import { NotFound } from './pages/not-found';
 
 export default function App() {
   return (
@@ -15,6 +16,9 @@ export default function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/trucks" element={<Trucks />} />
         </Route>
+
+        {/* 404 */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
