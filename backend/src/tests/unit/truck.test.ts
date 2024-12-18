@@ -40,14 +40,14 @@ describe('Truck', () => {
     const delivery = new Delivery({
       id: '1',
       truckId: '1',
-      driverId: driver.id,
+      driverId: driver.id as string,
       type: CargoType.OTHER,
       value: 15000,
       destination: Destination.OTHER,
       date: new Date(),
     });
 
-    truck.deliveries = [delivery.id];
+    truck.deliveries = [delivery?.id as string];
 
     expect(truck.deliveries?.length).toBe(1);
     expect(truck.deliveries?.[0]).toBe(delivery.id);

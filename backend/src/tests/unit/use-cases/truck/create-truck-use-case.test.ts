@@ -1,5 +1,5 @@
 import { CreateTruckUseCase } from '../../../../application/use-cases/truck/create-truck-use-case';
-import { InMemoryTruckRepository } from '../../../../infrastructure/in-memory/in-memory-truck-repository';
+import { InMemoryTruckRepository } from '../../../../infrastructure/in-memory/in-memory-truck-repository copy';
 
 describe('CreateTruckUseCase', () => {
   it('deve criar um caminhão corretamente', async () => {

@@ -9,20 +9,29 @@ export class InMemoryDeliveryRepository implements DeliveryRepository {
     return delivery;
   }
 
-  async countByTruckAndMonth(truckId: string, month: number): Promise<number> {
+  async countByTruckAndMonth(truckId: string, date: Date): Promise<number> {
+    const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
+    const lastDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+
     return this.deliveries.filter((delivery) => {
-      const deliveryMonth = delivery.date.getMonth() + 1;
-      return delivery.truckId === truckId && deliveryMonth === month;
+      return (
+        delivery.truckId === truckId &&
+        delivery.date >= firstDayOfMonth &&
+        delivery.date < lastDayOfMonth
+      );
     }).length;
   }
 
-  async countByDriverAndMonth(
-    driverId: string,
-    month: number
-  ): Promise<number> {
+  async countByDriverAndMonth(driverId: string, date: Date): Promise<number> {
+    const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
+    const lastDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+
     return this.deliveries.filter((delivery) => {
-      const deliveryMonth = delivery.date.getMonth() + 1;
-      return delivery.driverId === driverId && deliveryMonth === month;
+      return (
+        delivery.driverId === driverId &&
+        delivery.date >= firstDayOfMonth &&
+        delivery.date < lastDayOfMonth
+      );
     }).length;
   }
 
@@ -45,5 +54,11 @@ export class InMemoryDeliveryRepository implements DeliveryRepository {
 
   async delete(id: string): Promise<void> {
     this.deliveries = this.deliveries.filter((delivery) => delivery.id !== id);
+  }
+
+  async update(id: string, delivery: Delivery): Promise<Delivery> {
+    const index = this.deliveries.findIndex((d) => d.id === id);
+    this.deliveries[index] = delivery;
+    return delivery;
   }
 }

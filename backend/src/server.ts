@@ -3,6 +3,7 @@ import { errorHandler } from './presentation/middlewares/error-handler-middlewar
 import truckRoutes from './presentation/routes/truck-routes';
 import cors from 'cors';
 import driverRoutes from './presentation/routes/driver-routes';
+import deliveryRoutes from './presentation/routes/delivery-routes';
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(cors());
 
 app.use('/', truckRoutes);
 app.use('/', driverRoutes);
+app.use('/', deliveryRoutes);
 
 app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
   errorHandler(error, req, res, next);

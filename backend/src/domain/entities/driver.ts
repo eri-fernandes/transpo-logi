@@ -1,5 +1,5 @@
 export class Driver {
-  public id: string;
+  public id?: string;
   public name: string;
   public licenseNumber: string;
   public truckId?: string;
@@ -10,7 +10,7 @@ export class Driver {
     licenseNumber,
     truckId,
   }: {
-    id: string;
+    id?: string;
     name: string;
     licenseNumber: string;
     truckId?: string;

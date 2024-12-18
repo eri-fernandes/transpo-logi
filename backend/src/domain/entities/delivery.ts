@@ -1,18 +1,19 @@
+import { BadRequestException } from '../exceptions/bad-request-exception';
+
 export enum CargoType {
-  ELECTRONICS = 'electronics',
-  FUEL = 'fuel',
-  OTHER = 'other',
+  ELECTRONICS = 'ELECTRONICS',
+  FUEL = 'FUEL',
+  OTHER = 'OTHER',
 }
 
 export enum Destination {
-  NORTHEAST = 'northeast',
-  ARGENTINA = 'argentina',
-  AMAZON = 'amazon',
-  OTHER = 'other',
+  NORTHEAST = 'NORTHEAST',
+  ARGENTINA = 'ARGENTINA',
+  AMAZON = 'AMAZON',
+  OTHER = 'OTHER',
 }
-
 export class Delivery {
-  public id: string;
+  public id?: string;
   public truckId: string;
   public driverId: string;
   public type: CargoType;
@@ -33,7 +34,7 @@ export class Delivery {
     date,
     insured,
   }: {
-    id: string;
+    id?: string;
     truckId: string;
     driverId: string;
     type: CargoType;
@@ -50,17 +51,16 @@ export class Delivery {
     this.destination = destination;
     this.date = date;
 
+    this.insured = insured;
     this.isValuable = this.value > 30000;
     this.isDangerous = this.type === CargoType.FUEL;
 
     // Se o tipo for eletrônico, precisa ter o indicador de seguro
     if (type === CargoType.ELECTRONICS && insured === undefined) {
-      throw new Error(
+      throw new BadRequestException(
         'Entregas do Tipo eletrônicos devem ter um indicador se tem seguro ou não.'
       );
     }
-
-    this.insured = insured;
 
     if (destination === Destination.NORTHEAST && value > 0) {
       this.value *= 1.2; // Taxa de 20%

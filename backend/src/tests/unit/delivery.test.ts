@@ -39,7 +39,7 @@ describe('Delivery', () => {
     const delivery = new Delivery({
       id: '2',
       truckId: '1',
-      driverId: driver.id,
+      driverId: driver.id as string,
       type: CargoType.OTHER,
       value: 30001,
       destination: Destination.OTHER,
@@ -54,7 +54,7 @@ describe('Delivery', () => {
     const delivery = new Delivery({
       id: '6',
       truckId: '1',
-      driverId: driver.id,
+      driverId: driver.id as string,
       type: CargoType.ELECTRONICS,
       value: 10000,
       destination: Destination.OTHER,
@@ -69,7 +69,7 @@ describe('Delivery', () => {
     const delivery = new Delivery({
       id: '5',
       truckId: '1',
-      driverId: driver.id,
+      driverId: driver.id as string,
       type: CargoType.FUEL,
       value: 10000,
       destination: Destination.OTHER,
@@ -83,7 +83,7 @@ describe('Delivery', () => {
     const delivery = new Delivery({
       id: '3',
       truckId: '1',
-      driverId: driver.id,
+      driverId: driver.id as string,
       type: CargoType.OTHER,
       value: 10000,
       destination: Destination.NORTHEAST,
@@ -97,7 +97,7 @@ describe('Delivery', () => {
     const delivery = new Delivery({
       id: '4',
       truckId: '1',
-      driverId: driver.id,
+      driverId: driver.id as string,
       type: CargoType.OTHER,
       value: 10000,
       destination: Destination.ARGENTINA,
@@ -111,7 +111,7 @@ describe('Delivery', () => {
     const delivery = new Delivery({
       id: '4',
       truckId: '1',
-      driverId: driver.id,
+      driverId: driver.id as string,
       type: CargoType.OTHER,
       value: 10000,
       destination: Destination.AMAZON,
@@ -126,7 +126,7 @@ describe('Delivery', () => {
       new Delivery({
         id: '6',
         truckId: '1',
-        driverId: driver.id,
+        driverId: driver.id as string,
         type: CargoType.ELECTRONICS,
         value: 10000,
         destination: Destination.OTHER,
