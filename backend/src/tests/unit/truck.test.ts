@@ -25,6 +25,12 @@ describe('Truck', () => {
   });
 
   it('deve associar uma entrega a um caminhão', () => {
+    const driver = new Driver({
+      id: '1',
+      name: 'João da Silva',
+      licenseNumber: 'ABC123456',
+    });
+
     const truck = new Truck({
       id: '1',
       licensePlate: 'AAA1234',
