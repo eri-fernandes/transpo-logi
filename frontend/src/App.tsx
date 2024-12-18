@@ -1,7 +1,19 @@
+import { BrowserRouter, Routes, Route } from 'react-router';
+import { Login } from './pages/login';
+import { Dashboard } from '@/pages/dashboard';
+import { AuthLayout } from '@/layouts/auth-layout';
+
 export default function App() {
   return (
-    <div className="flex h-screen items-center justify-center bg-gray-100">
-      <h1 className="text-4xl font-bold text-green-700">TranspoLogi</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+
+        {/* Área logada */}
+        <Route element={<AuthLayout />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
