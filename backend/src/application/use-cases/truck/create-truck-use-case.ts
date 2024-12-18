@@ -17,7 +17,7 @@ export class CreateTruckUseCase {
     );
 
     if (truckExists) {
-      throw new ConflictException('Truck already exists');
+      throw new ConflictException('Caminhão já cadastrado');
     }
 
     return await this.truckRepository.create({

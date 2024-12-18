@@ -13,7 +13,7 @@ export class UpdateTruckUseCase {
     const existingTruck = await this.truckRepository.findById(id);
 
     if (!existingTruck) {
-      throw new NotFoundException('Truck not found');
+      throw new NotFoundException('Caminhão não encontrado');
     }
 
     const truck = new Truck({ licensePlate: data.licensePlate });

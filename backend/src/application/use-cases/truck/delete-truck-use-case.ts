@@ -8,7 +8,7 @@ export class DeleteTruckUseCase {
     const truck = await this.truckRepository.findById(id);
 
     if (!truck) {
-      throw new NotFoundException('Truck not found');
+      throw new NotFoundException('Caminhão não encontrado');
     }
 
     await this.truckRepository.delete(id);
