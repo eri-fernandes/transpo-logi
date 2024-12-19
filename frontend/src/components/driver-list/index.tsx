@@ -23,7 +23,6 @@ export default function DriverList({
 }: DriverListProps) {
   return (
     <div className="rounded-lg bg-white p-6 shadow-md">
-      <h2 className="mb-4 text-xl font-bold">Lista de Motoristas</h2>
       <div className="overflow-x-auto">
         <Table>
           <TableHeader>

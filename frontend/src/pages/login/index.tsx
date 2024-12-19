@@ -1,5 +1,6 @@
 import LoginForm from '@/components/forms/login-form';
 import { Truck } from 'lucide-react';
+import loginBg from '../../assets/login-bg.png';
 
 export function Login() {
   return (
@@ -7,8 +8,8 @@ export function Login() {
       <div className="flex w-full items-center justify-center lg:w-1/2">
         <div className="w-full max-w-md px-6">
           <div className="mb-8 text-center">
-            <Truck className="text-primary mx-auto h-12 w-12" />
-            <h2 className="text-primary mt-6 text-3xl font-extrabold">
+            <Truck className="mx-auto h-12 w-12 text-primary" />
+            <h2 className="mt-6 text-3xl font-extrabold text-primary">
               TranspoLogi
             </h2>
             <p className="text-md mt-2 text-gray-600">Transporte e Logística</p>
@@ -20,12 +21,12 @@ export function Login() {
       {/* Imagem com Overlay */}
       <div className="relative hidden w-1/2 lg:block">
         {/* Overlay */}
-        <div className="bg-primary absolute inset-0 z-10 opacity-90"></div>
+        <div className="absolute inset-0 z-10 bg-primary opacity-90"></div>
 
         {/* Imagem */}
         <img
           className="absolute inset-0 h-full w-full object-cover"
-          src="https://plus.unsplash.com/premium_photo-1661963219843-f1a50a6cfcd3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src={loginBg}
           alt="Trucks"
         />
 

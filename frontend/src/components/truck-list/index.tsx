@@ -19,7 +19,6 @@ interface TruckListProps {
 export function TruckList({ trucks, onUpdate, onDelete }: TruckListProps) {
   return (
     <div className="rounded-lg bg-white p-6 shadow-md">
-      <h2 className="mb-4 text-xl font-bold">Lista de Caminhões</h2>
       <div className="overflow-x-auto">
         <Table>
           <TableHeader>

@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import {
   Table,
   TableBody,
@@ -6,86 +7,56 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Badge } from '@/components/ui/badge';
+import { Delivery } from '@/types/delivery';
+import { Pencil, Trash2 } from 'lucide-react';
 
-const deliveries = [
-  {
-    id: 1,
-    destination: 'São Paulo',
-    type: 'Eletrônicos',
-    value: 25000,
-    status: 'Em Trânsito',
-    truck: 'T001',
-  },
-  {
-    id: 2,
-    destination: 'Rio de Janeiro',
-    type: 'Alimentos',
-    value: 15000,
-    status: 'Entregue',
-    truck: 'T003',
-  },
-  {
-    id: 3,
-    destination: 'Belo Horizonte',
-    type: 'Combustível',
-    value: 50000,
-    status: 'Em Trânsito',
-    truck: 'T002',
-  },
-  {
-    id: 4,
-    destination: 'Recife',
-    type: 'Eletrônicos',
-    value: 35000,
-    status: 'Agendada',
-    truck: 'T004',
-  },
-  {
-    id: 5,
-    destination: 'Porto Alegre',
-    type: 'Móveis',
-    value: 20000,
-    status: 'Em Trânsito',
-    truck: 'T005',
-  },
-];
+interface DeliveryListProps {
+  deliveries: Delivery[];
+  onUpdate: (delivery: Delivery) => void;
+  onDelete: (id: string) => void;
+}
 
-export default function DeliveryList() {
+export function DeliveryList({
+  deliveries,
+  onUpdate,
+  onDelete,
+}: DeliveryListProps) {
   return (
     <div className="rounded-lg bg-white p-6 shadow-md">
-      <h2 className="mb-4 text-xl font-bold">Lista de Entregas</h2>
       <div className="overflow-x-auto">
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>ID</TableHead>
+              <TableHead>Motorista</TableHead>
               <TableHead>Destino</TableHead>
-              <TableHead>Tipo</TableHead>
-              <TableHead>Valor</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Caminhão</TableHead>
+              <TableHead>Ações</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {deliveries.map((delivery) => (
               <TableRow key={delivery.id}>
+                <TableCell>{delivery.id}</TableCell>
+                <TableCell>{delivery.driverId}</TableCell>
                 <TableCell>{delivery.destination}</TableCell>
-                <TableCell>{delivery.type}</TableCell>
-                <TableCell>R$ {delivery.value.toLocaleString()}</TableCell>
                 <TableCell>
-                  <Badge
-                    variant={
-                      delivery.status === 'Entregue'
-                        ? 'success'
-                        : delivery.status === 'Em Trânsito'
-                          ? 'warning'
-                          : 'default'
-                    }
-                  >
-                    {delivery.status}
-                  </Badge>
+                  <div className="flex space-x-2">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => onUpdate(delivery)}
+                    >
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => onDelete(delivery.id!)}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </TableCell>
-                <TableCell>{delivery.truck}</TableCell>
               </TableRow>
             ))}
           </TableBody>

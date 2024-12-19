@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 export default function LoginForm() {
@@ -11,17 +11,17 @@ export default function LoginForm() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError('');
 
     if (email === 'admin@transpologi.com' && password === '123456') {
       // Redirect to dashboard
-      navigate('/dashboard');
+      navigate('/trucks');
     } else {
       setError('Email ou senha inválidos');
     }
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">

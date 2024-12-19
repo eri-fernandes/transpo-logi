@@ -11,12 +11,12 @@ export function NewDriverForm({ onSubmit }: NewDriverFormProps) {
   const [name, setName] = useState('');
   const [licenseNumber, setLicenseNumber] = useState('');
 
-  const handleSubmit = (e: FormEvent) => {
+  function handleSubmit(e: FormEvent) {
     e.preventDefault();
     onSubmit(name, licenseNumber);
     setName('');
     setLicenseNumber('');
-  };
+  }
 
   return (
     <div className="rounded-lg bg-white p-6 shadow-md">

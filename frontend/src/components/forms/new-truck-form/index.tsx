@@ -2,17 +2,30 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Driver } from '@/types/driver';
 
 interface NewTruckFormProps {
   onSubmit: (licensePlate: string, driver: string) => void;
+  drivers: Driver[]; // Receba os motoristas como prop
 }
 
-export default function NewTruckForm({ onSubmit }: NewTruckFormProps) {
+export default function NewTruckForm({ onSubmit, drivers }: NewTruckFormProps) {
   const [licensePlate, setLicensePlate] = useState('');
   const [driver, setDriver] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!driver) {
+      alert('Por favor, selecione um motorista.');
+      return;
+    }
     onSubmit(licensePlate, driver);
     setLicensePlate('');
     setDriver('');
@@ -33,12 +46,18 @@ export default function NewTruckForm({ onSubmit }: NewTruckFormProps) {
         </div>
         <div>
           <Label htmlFor="driver">Motorista</Label>
-          <Input
-            id="driver"
-            value={driver}
-            onChange={(e) => setDriver(e.target.value)}
-            required
-          />
+          <Select onValueChange={(value) => setDriver(value)} required>
+            <SelectTrigger id="driver">
+              <SelectValue placeholder="Selecione um motorista" />
+            </SelectTrigger>
+            <SelectContent>
+              {drivers.map((driver) => (
+                <SelectItem key={driver.id} value={driver.id}>
+                  {driver.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
         <Button
           type="submit"
