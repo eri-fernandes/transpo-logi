@@ -49,8 +49,8 @@ model Delivery {
   isValuable  Boolean
   isDangerous Boolean
 
-  truck  Truck  @relation(fields: [truckId], references: [id])
-  driver Driver @relation(fields: [driverId], references: [id])
+  truck  Truck  @relation(fields: [truckId], references: [id], onDelete: Cascade)
+  driver Driver @relation(fields: [driverId], references: [id], onDelete: Cascade)
 
   @@map("delivery")
 }
